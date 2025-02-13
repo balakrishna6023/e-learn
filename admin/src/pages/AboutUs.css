@@ -1,0 +1,108 @@
+.aboutus-page-container {
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #f3f4f6, #1d3557); /* Gradient background */
+    color: #333;
+    line-height: 1.8;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    text-align: center;
+    color: #1d3557;
+    margin-bottom: 40px;
+  }
+  
+
+  section {
+    margin-bottom: 40px;
+  }
+  
+ .aboutus-section {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .aboutus-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mission, .vision {
+    background: #fff;
+    color: #333;
+    text-align: center;
+  }
+  
+  .mission h2, .vision h2 {
+    color: #1d3557;
+  }
+  
+  .why-choose-us ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .why-choose-us li {
+    margin: 10px 0;
+    font-size: 1.2rem;
+  }
+  
+  .why-choose-us li strong {
+    color: #1d3557;
+  }
+  
+  .contact ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .contact li {
+    font-size: 1.2rem;
+    margin: 8px 0;
+  }
+  
+  .contact li strong {
+    color: #1d3557;
+  }
+  
+  .footer {
+    background-color: #1d3557;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+  }
+  
+  .footer p {
+    margin: 0;
+    font-size: 1rem;
+  }
+  
+  .footer .footer-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  
+  .footer .footer-links a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .aboutus-page-container {
+      padding: 20px 10px;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  
+    .aboutus-section {
+      padding: 20px;
+    }
+  }
+  

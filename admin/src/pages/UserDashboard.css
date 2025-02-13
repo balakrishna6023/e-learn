@@ -1,0 +1,65 @@
+/* Main container for the dashboard */
+.user-dashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #f4f4f4;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .dashboard-heading {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .dashboard-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between buttons */
+  }
+  
+  .dashboard-button {
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 200px;
+    text-align: center;
+  }
+  
+  /* Style for button on hover */
+  .dashboard-button:hover {
+    background-color: #007bff;
+    color: white;
+    transform: scale(1.05);
+  }
+  
+  .dashboard-button:focus {
+    outline: none;
+  }
+  
+  .dashboard-button:nth-child(1) {
+    background-color: #28a745; /* Green for "My Courses" */
+    color: white;
+  }
+  
+  .dashboard-button:nth-child(2) {
+    background-color: #ffc107; /* Yellow for "Payment Status" */
+    color: black;
+  }
+  
+  .dashboard-button:nth-child(1):hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+  
+  .dashboard-button:nth-child(2):hover {
+    background-color: #e0a800; /* Darker yellow on hover */
+  }
+  

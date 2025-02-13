@@ -1,0 +1,37 @@
+.payment-details-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .payment-details-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .payment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .payment-item {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .payment-item h3 {
+    margin-top: 0;
+    font-size: 18px;
+  }
+  
+  .payment-item p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  
+  .payment-item strong {
+    font-weight: bold;
+  }
+  

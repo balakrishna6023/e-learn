@@ -1,0 +1,53 @@
+/* Overall container for the Course Manager component */
+.course-manager {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+  }
+  
+  /* Heading for the Course Manager */
+  .course-manager-heading {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  /* Action buttons container */
+  .course-manager-action {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Individual button styles */
+  .create-course-button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    width: 200px;
+    display: block;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Hover effect for the buttons */
+  .create-course-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style for the last button (optional) */
+  .create-course-button:last-child {
+    margin-bottom: 0;
+  }
+  

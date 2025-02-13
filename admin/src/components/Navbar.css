@@ -1,0 +1,41 @@
+.navbar {
+  background-color: #333;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Optional: Adds shadow for depth */
+}
+
+.navbar-list {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between; /* Distribute items evenly */
+  align-items: center; /* Center items vertically */
+  margin: 0;
+  padding: 0;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto; /* Centers the navbar */
+}
+
+.navbar-link {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover */
+}
+
+.navbar-link:hover {
+  background-color: #5f1313;
+  color: #fff; /* Ensure the text color remains white on hover */
+}
+
+/* Style the Logout button */
+.navbar-link.logout {
+  background-color: #d9534f; /* Red background for logout */
+  border-radius: 4px;
+  padding: 10px 15px;
+}
+
+.navbar-link.logout:hover {
+  background-color: #c9302c; /* Darker red for hover */
+}

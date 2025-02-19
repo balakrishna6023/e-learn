@@ -10,7 +10,7 @@ function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [adminCode, setAdminCode] = useState(''); // New field for admin code
+  const [adminCode, setAdminCode] = useState('');
   const [error, setError] = useState('');
   const [passwordStrength, setPasswordStrength] = useState('');
   const navigate = useNavigate();
@@ -57,10 +57,7 @@ function Signup() {
       return;
     }
 
-    const role = adminCode === process.env.REACT_APP_ADMIN_CODE ? 'admin' : 'user'; // Determine role based on admin code
-
     try {
-      // Send the data to your backend API for registration
       const response = await fetch('http://localhost:5000/api/auth/register', {
         method: 'POST',
         headers: {
@@ -71,7 +68,7 @@ function Signup() {
           mobile,
           email,
           password,
-          role, // Include role in the request
+          adminCode, // Pass adminCode to backend
         }),
       });
 
@@ -155,7 +152,6 @@ function Signup() {
           Already have an account? <a href="/login">Log In</a>
         </p>
 
-        {/* Social Media Signup */}
         <div className="social-signup">
           <button className="google-btn" onClick={handleGoogleSignup}>
             Sign Up with Google

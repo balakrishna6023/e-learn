@@ -8,24 +8,33 @@ const router = express.Router();
 // Register Route
 router.post("/register", async (req, res) => {
   try {
-    const { name, mobile, email, password, role, adminCode } = req.body;
+    const { name, mobile, email, password, adminCode } = req.body;
+
+    console.log("Entered Admin Code:", adminCode);
+    console.log("Expected Admin Code:", process.env.ADMIN_CODE);
 
     if (!/^\d{10}$/.test(mobile)) {
-      return res.status(400).json({ message: "Mobile number must be 10 digits." });
+      return res
+        .status(400)
+        .json({ message: "Mobile number must be 10 digits." });
     }
 
     const existingUser = await User.findOne({ $or: [{ email }, { mobile }] });
     if (existingUser) {
-      return res.status(400).json({ message: "User with this email or mobile already exists" });
-    }
-
-    if (role === "admin" && adminCode !== process.env.ADMIN_CODE) {
-      return res.status(403).json({ message: "Invalid admin code" });
+      return res
+        .status(400)
+        .json({ message: "User with this email or mobile already exists" });
     }
 
     if (!password) {
       return res.status(400).json({ message: "Password cannot be empty" });
     }
+
+    // Ensure both values are treated as strings and trim any extra spaces
+    const role =
+      adminCode?.trim() === process.env.ADMIN_CODE?.trim() ? "admin" : "user";
+
+    console.log("Assigned Role:", role);
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -35,14 +44,16 @@ router.post("/register", async (req, res) => {
       mobile,
       email,
       password: hashedPassword,
-      role: role || "user",
+      role,
     });
 
     await user.save();
-    res.status(201).json({ message: "User registered successfully" });
+    res.status(201).json({ message: "User registered successfully", role });
   } catch (err) {
     console.error("Error during registration:", err.message);
-    res.status(500).json({ message: "An error occurred during registration. Please try again later." });
+    res.status(500).json({
+      message: "An error occurred during registration. Please try again later.",
+    });
   }
 });
 
@@ -52,12 +63,16 @@ router.post("/login", async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: "User not found. Please check your email." });
+      return res
+        .status(400)
+        .json({ message: "User not found. Please check your email." });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Invalid password. Please try again." });
+      return res
+        .status(400)
+        .json({ message: "Invalid password. Please try again." });
     }
 
     const token = jwt.sign(
@@ -77,7 +92,9 @@ router.post("/login", async (req, res) => {
     });
   } catch (err) {
     console.error("Error during login:", err.message);
-    res.status(500).json({ message: "An error occurred during login. Please try again later." });
+    res.status(500).json({
+      message: "An error occurred during login. Please try again later.",
+    });
   }
 });
 

@@ -10,8 +10,8 @@ router.post("/register", async (req, res) => {
   try {
     const { name, mobile, email, password, adminCode } = req.body;
 
-    console.log("Entered Admin Code:", adminCode);
-    console.log("Expected Admin Code:", process.env.ADMIN_CODE);
+    // console.log("Entered Admin Code:", adminCode);
+    // console.log("Expected Admin Code:", process.env.ADMIN_CODE);
 
     if (!/^\d{10}$/.test(mobile)) {
       return res

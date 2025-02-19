@@ -1,31 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Categories.css';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Categories.css";
 
 function Categories() {
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false); // Track if the user is an admin
   const [updatedCategory, setUpdatedCategory] = useState({
-    categoryId: '',
-    name: '',
-    description: '',
+    categoryId: "",
+    name: "",
+    description: "",
     image: null,
   });
-  const [error, setError] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   // Fetch categories function
   const fetchCategories = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/category/categories');
+      const response = await fetch(
+        "http://localhost:5000/api/category/categories"
+      );
       if (!response.ok) {
-        throw new Error('Failed to fetch categories');
+        throw new Error("Failed to fetch categories");
       }
       const data = await response.json();
       setCategories(data.categories);
     } catch (error) {
-      console.error('Error fetching categories:', error);
+      console.error("Error fetching categories:", error);
     }
   };
 
@@ -33,15 +35,15 @@ function Categories() {
     // Check user role (e.g., from JWT or API)
     const checkUserRole = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/auth/me', {
+        const response = await fetch("http://localhost:5000/api/auth/me", {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`, // Assuming JWT token is stored in localStorage
+            Authorization: `Bearer ${localStorage.getItem("token")}`, // Assuming JWT token is stored in localStorage
           },
         });
         const data = await response.json();
-        setIsAdmin(data.role === 'admin'); // Adjust according to your API response
+        setIsAdmin(data.role === "admin"); // Adjust according to your API response
       } catch (error) {
-        console.error('Error checking user role:', error);
+        console.error("Error checking user role:", error);
       }
     };
 
@@ -115,9 +117,9 @@ function Categories() {
       if (response.ok) {
         setSuccessMessage("Category updated successfully!");
         setUpdatedCategory({
-          categoryId: '',
-          name: '',
-          description: '',
+          categoryId: "",
+          name: "",
+          description: "",
           image: null,
         });
         fetchCategories(); // Refresh category list
@@ -135,20 +137,29 @@ function Categories() {
         <div className="hero-content">
           <h1>Explore Your Passion, Master Your Skills</h1>
           <p>
-            With a variety of IT, Non-IT, and specialized courses, our platform is designed to cater to learners from all walks of life. Whether you're a
-            tech enthusiast, an aspiring artist, or a student aiming to excel, our diverse range of categories ensures that there's a path just for you.
+            With a variety of IT, Non-IT, and specialized courses, our platform
+            is designed to cater to learners from all walks of life. Whether
+            you're a tech enthusiast, an aspiring artist, or a student aiming to
+            excel, our diverse range of categories ensures that there's a path
+            just for you.
           </p>
         </div>
       </section>
 
       <div className="categories-list">
         {categories.map((category) => (
-          <div className="category-card" key={category._id}>
+          <div
+            className="category-card"
+            key={category._id}
+            onClick={() => handleCategoryClick(category.categoryId)}
+          >
             <img
-              src={`http://localhost:5000${category.image || '/uploads/default.jpg'}`}
+              src={`http://localhost:5000${
+                category.image || "/uploads/default.jpg"
+              }`}
               alt={`${category.name} category`}
               className="category-image"
-              onClick={() => handleCategoryClick(category.categoryId)} // Navigate to the category-related courses
+              // Navigate to the category-related courses
             />
             {updatedCategory.categoryId === category.categoryId ? (
               <div>
@@ -164,27 +175,38 @@ function Categories() {
                     value={updatedCategory.description}
                     onChange={handleInputChange}
                   />
-                  <input
-                    type="file"
-                    onChange={handleImageChange}
-                  />
+                  <input type="file" onChange={handleImageChange} />
                   <div className="card-buttons">
                     <button type="submit">Save</button>
-                    <button type="button" onClick={() => setUpdatedCategory({ categoryId: '', name: '', description: '', image: null })}>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setUpdatedCategory({
+                          categoryId: "",
+                          name: "",
+                          description: "",
+                          image: null,
+                        })
+                      }
+                    >
                       Cancel
                     </button>
                   </div>
                 </form>
                 {error && <p className="error-message">{error}</p>}
-                {successMessage && <p className="success-message">{successMessage}</p>}
+                {successMessage && (
+                  <p className="success-message">{successMessage}</p>
+                )}
               </div>
             ) : (
               <div>
                 <h2>{category.name}</h2>
-                <p>{category.description || 'No description available.'}</p>
+                <p>{category.description || "No description available."}</p>
                 {isAdmin && (
                   <div className="card-buttons">
-                    <button onClick={() => handleEditClick(category)}>Update</button>
+                    <button onClick={() => handleEditClick(category)}>
+                      Update
+                    </button>
                   </div>
                 )}
               </div>
